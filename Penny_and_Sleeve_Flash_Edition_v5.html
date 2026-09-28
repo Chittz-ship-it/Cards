@@ -1,0 +1,132 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Penny & Sleeve</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#07111d;color:#fff;font-family:"Courier New",monospace}
+button{font:inherit;cursor:pointer}.top{height:64px;background:#07101b;border-bottom:3px solid #24c8ff;display:flex;align-items:center;padding:8px 16px;gap:18px;position:sticky;top:0;z-index:5}.logo{font:bold 28px Impact,Arial;color:#ffd53d;text-shadow:3px 3px #c83232}.money{margin-left:auto;color:#ffd53d;font-weight:bold;border:2px solid #ffd53d;padding:8px 12px}.nav button,.btn{background:#103658;color:#fff;border:2px solid #27b9ef;padding:8px 12px;font-weight:bold}.nav button.active,.btn.yellow{background:#ffd53d;color:#111;border-color:#fff}.wrap{max-width:1400px;margin:auto;padding:14px}.view{display:none}.view.active{display:block}
+.shop{height:500px;position:relative;overflow:hidden;border:4px solid #17100c;background:repeating-linear-gradient(0deg,#89532f 0 28px,#774725 28px 31px);box-shadow:0 8px 0 #000}
+.poster{position:absolute;top:25px;width:180px;height:130px;background:#f0d06c;color:#12304b;border:6px solid #27170f;text-align:center;padding:12px;font-weight:bold;transform:rotate(-2deg)}.poster b{font:32px Impact;display:block}.poster.r{right:20px;left:auto;background:#d94b3d;color:#fff;transform:rotate(2deg)}.shelves{position:absolute;left:220px;right:220px;top:40px;height:280px;background:#402418;border:8px solid #21130c;padding:12px;display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.rack{background:#a66a3b;border:3px solid #4c2b18;padding:5px}.mini{height:28px;margin:3px;background:linear-gradient(90deg,#e34b43,#ffd53d,#29b9ed,#68c86c);border:2px solid #211}.counter{position:absolute;left:6%;right:6%;bottom:0;height:155px;background:#754526;border:7px solid #422412;display:flex;align-items:center;padding:15px 25px;gap:25px}.person{font-size:72px}.counter h1{font:34px Impact;color:#ffd53d;margin:0}.panel{background:#081c31;border:2px solid #2385b9;padding:14px;margin-bottom:12px;box-shadow:0 3px 0 #000}.title{font:30px Impact;color:#ffd53d;margin:0 0 8px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}
+.packstage{min-height:560px;display:flex;align-items:center;justify-content:center;flex-direction:column}.pack{width:235px;height:345px;border:8px solid #111;border-radius:15px;background:linear-gradient(135deg,#0874be,#20c5e9 45%,#253d91 46%);box-shadow:12px 15px #0008;position:relative;touch-action:none;user-select:none}.pack .brand{font:36px Impact;color:#ffd53d;text-align:center;margin-top:42px;text-shadow:3px 3px #c83232}.pack .creature{margin:25px auto;width:125px;height:125px;border-radius:50%;display:grid;place-items:center;background:#9ce7dc;border:5px solid #10233b;font-size:65px}.pack .tear{position:absolute;bottom:22px;left:20px;right:20px;background:#ffd53d;color:#111;border:3px solid #111;text-align:center;padding:8px;font-weight:bold}.shake{animation:shake .25s linear 2}.rip{animation:rip .45s forwards}@keyframes shake{25%{transform:translateX(-10px) rotate(-4deg)}50%{transform:translateX(10px) rotate(4deg)}75%{transform:translateX(-7px)}}@keyframes rip{to{transform:translateY(70px) rotate(15deg);opacity:0}}
+.boxstage{min-height:560px;display:flex;align-items:center;justify-content:center}.box{width:480px;height:310px;position:relative;filter:drop-shadow(15px 18px 8px #0008);cursor:pointer}.front{position:absolute;bottom:0;left:0;right:0;height:245px;background:linear-gradient(135deg,#176cad,#0b315b);border:9px solid #121b25;padding:18px;text-align:center}.front h1{font:56px Impact;color:#ffd53d;text-shadow:4px 4px #c83232;margin:0}.front .big{font-size:95px}.flap{position:absolute;left:15px;top:5px;width:430px;height:55px;background:#ffd53d;border:8px solid #121b25;z-index:3;text-align:center;color:#111;font-weight:bold;padding:10px;transition:.4s}.box.open .flap{transform:translateY(-65px) rotate(-7deg)}.packs{position:absolute;bottom:205px;left:40px;display:flex;gap:4px;z-index:1;opacity:0;transition:.4s}.box.open .packs{opacity:1}.tiny{width:45px;height:90px;background:linear-gradient(#18b8e8,#164d91);border:3px solid #111}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:12px}.card{background:#f4e9cc;color:#10131a;border:5px solid #182331;border-radius:7px;padding:8px;height:265px;box-shadow:4px 5px #0008;transition:.12s}.card:hover{transform:translateY(-5px) rotate(-1deg)}.card.foil{background:linear-gradient(135deg,#fff,#bff4ff,#fff0b0,#efc7ff,#fff)}.card.holo{background:linear-gradient(135deg,#d4ffff,#fff,#ffd0f3,#e4ffbf)}.art{height:145px;border:2px solid #27384a;background:linear-gradient(#bfe1dc,#77a76b);display:grid;place-items:center;font-size:68px}.card h3{font:17px Impact;margin:4px 0}.meta{font-size:10px}.badge{display:inline-block;background:#111;color:#ffd53d;padding:3px 5px;font-size:9px;margin-top:4px}.match{display:grid;grid-template-columns:repeat(6,70px);gap:8px;justify-content:center}.tile{height:78px;background:#123a60;color:#ffd53d;border:3px solid #1dbbe9;font-size:28px;font-weight:bold}.tile.open{background:#ffd53d;color:#111}.modal{position:fixed;inset:0;background:#000c;display:none;align-items:center;justify-content:center;padding:15px;z-index:20}.modal.show{display:flex}.modalbox{width:min(1050px,100%);max-height:90vh;overflow:auto;background:#071a2e;border:3px solid #28caff;padding:16px}.pulls{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#ffd53d;color:#111;border:3px solid #111;padding:10px 16px;font-weight:bold;display:none;z-index:50}.toast.show{display:block}@media(max-width:800px){.shelves{left:15px;right:15px}.poster{display:none}.counter{left:2%;right:2%}.nav{display:none}.box{transform:scale(.72)}}
+
+/* === V5 VISUAL PATCH === */
+html,body{min-width:320px}
+body{background:#09111c;font-family:Arial,Helvetica,sans-serif;letter-spacing:0}
+.top{height:72px;padding:10px 22px;gap:22px}
+.logo{font:900 32px Impact,"Arial Black",sans-serif;letter-spacing:.5px;line-height:1;color:#ffd53d;text-shadow:3px 3px 0 #c83232}
+.money{font:700 20px "Courier New",monospace;min-width:112px;text-align:center}
+.wrap{max-width:1500px;padding:18px}
+.shop{height:650px;border-radius:4px;background:
+ linear-gradient(90deg,#6b3b22 0 24px,transparent 24px calc(100% - 24px),#6b3b22 calc(100% - 24px)),
+ repeating-linear-gradient(0deg,#a9663b 0 42px,#91552f 42px 46px);
+ box-shadow:0 12px 0 #000,0 18px 35px #0007;
+}
+.poster{top:24px;left:28px;width:185px;height:122px;z-index:1}
+.poster.r{left:auto;right:28px}
+.shelves{left:240px;right:240px;top:42px;height:350px;padding:16px;gap:12px;grid-template-columns:repeat(4,1fr);border-width:9px}
+.rack{padding:7px;display:flex;flex-direction:column;justify-content:flex-start;min-width:0}
+.rack .mini{height:105px;margin:0 0 7px;border:3px solid #211;background:#e9e0c6;display:grid;place-items:center;overflow:hidden}
+.rack small{font:700 12px "Courier New",monospace;color:#fff4d4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.counter{left:4%;right:4%;height:205px;padding:22px 30px;gap:26px;align-items:center}
+.counter h1{font-size:36px;line-height:1;margin:0 0 8px}
+.counter p{font-size:16px;max-width:600px;line-height:1.35;margin:5px 0}
+.person{width:100px;height:110px;display:grid;place-items:center;font-size:0}
+.person:after{content:"";width:70px;height:70px;border-radius:50%;background:
+ radial-gradient(circle at 50% 42%,#f2bd91 0 28%,transparent 29%),
+ radial-gradient(ellipse at 50% 78%,#2675d8 0 28%,transparent 29%),
+ linear-gradient(#1763c4 0 32%,transparent 33%);
+ border:4px solid #172333;box-shadow:0 7px 0 #0004}
+.actions{gap:10px}
+.btn{border-radius:2px;min-height:42px;padding:9px 14px;box-shadow:0 3px 0 #04101b}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #04101b}
+.panel{border-radius:3px}
+.packstage{min-height:650px;background:radial-gradient(circle at 50% 45%,#183c5b,#071525 62%);border:2px solid #14547b;position:relative}
+.pack{width:250px;height:370px}
+.pack .creature{font-size:0;background:linear-gradient(#a9f4ed,#4aaea8);position:relative;overflow:hidden}
+.pack .creature:after{content:"";width:72px;height:72px;border-radius:50%;background:#f8c857;border:5px solid #172a3b;box-shadow:35px 18px 0 -12px #ef735d,-35px 18px 0 -12px #ef735d}
+.instructions{font-size:14px;color:#aac4d8;margin-top:22px}
+.boxstage{min-height:650px;background:radial-gradient(circle at 50% 48%,#173e5d,#071525 65%);border:2px solid #14547b}
+.box{width:520px;height:350px}
+.front{height:270px}
+.front h1{font-size:62px}
+.front .big{font-size:0;height:110px;position:relative}
+.front .big:after{content:"";position:absolute;width:92px;height:92px;left:calc(50% - 46px);top:6px;border-radius:32% 68% 48% 52%;background:#7dd6cb;border:7px solid #14253b;box-shadow:inset -18px -14px 0 #4b9e9a}
+.front .big:before{content:"";position:absolute;z-index:2;width:18px;height:18px;border-radius:50%;background:#18233a;left:calc(50% - 24px);top:35px;box-shadow:30px 8px 0 #18233a}
+.tiny{border-radius:3px}
+.grid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.card{height:305px;padding:9px;border-width:4px}
+.card .art{height:175px;font-size:0;position:relative;overflow:hidden}
+.card .art svg{width:100%;height:100%;display:block}
+.card h3{font-size:18px;margin:7px 0 3px}
+.meta{font-size:11px}
+.card:hover{transform:translateY(-7px) rotate(-.7deg)}
+.match{gap:10px}
+.tile{border-radius:4px;box-shadow:0 4px 0 #0008}
+@media(max-width:900px){
+ .nav{display:flex;overflow-x:auto;max-width:46vw}.nav button{white-space:nowrap;padding:6px 8px;font-size:11px}
+ .top{height:62px;padding:8px 12px}.logo{font-size:25px}.money{font-size:17px;min-width:95px}
+ .wrap{padding:10px}.shop{height:610px}.poster{display:none}
+ .shelves{left:18px;right:18px;top:20px;height:310px;grid-template-columns:repeat(4,1fr);padding:10px;gap:7px}
+ .rack .mini{height:100px}.counter{left:18px;right:18px;height:245px;padding:16px;gap:8px}.counter h1{font-size:29px}.counter p{font-size:14px}.person{display:none}
+ .actions{flex-wrap:wrap}.actions .btn{flex:1 1 210px}
+}
+@media(max-width:520px){
+ .nav{display:none}
+ .top{justify-content:space-between}.logo{font-size:22px}.money{margin:0;font-size:15px;min-width:88px}
+ .shop{height:690px}.shelves{height:330px;grid-template-columns:repeat(2,1fr);left:14px;right:14px}.rack .mini{height:115px}
+ .counter{height:300px;left:14px;right:14px;align-items:flex-start}.counter h1{font-size:28px;max-width:320px}
+ .counter p{font-size:13px;max-width:300px}
+ .pack{width:220px;height:330px}.box{transform:scale(.78)}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.card{height:265px;padding:6px}.card .art{height:145px}.card h3{font-size:15px}
+}
+</style></head><body><div id="app">
+<header class="top"><div class="logo">PENNY & SLEEVE</div><div class="nav"><button class="active" data-view="shop">SHOP</button><button data-view="packs">PACKS</button><button data-view="collection">COLLECTION</button><button data-view="match">TILE MATCH</button><button data-view="save">SAVE</button></div><div class="money">£<span id="cash">60.00</span></div></header>
+<main class="wrap">
+<section id="shop" class="view active"><div class="shop"><div class="poster"><b>GOTTA<br>COLLECT<br>'EM ALL!</b>1997 CARD & HOBBY</div><div class="poster r"><b>FULL<br>COURT</b>BASKETBALL SERIES</div><div class="shelves" id="shelves"></div><div class="counter"><div class="person"></div><div><h1>WELCOME TO PENNY & SLEEVE</h1><p>Buy packs. Chase pulls. Grade them. Put the good stuff under glass.</p><div class="actions"><button class="btn" onclick="view('packs')">OPEN SOME PACKS</button><button class="btn" onclick="view('collection')">CHECK BINDER</button></div></div></div></div><div class="actions"><button class="btn yellow" onclick="buyLoose()">BUY LOOSE PACK — £3</button><button class="btn" onclick="buyBox()">BUY 36-PACK BOX — £75</button><button class="btn" onclick="customer()">NEXT CUSTOMER</button></div></section>
+<section id="packs" class="view"><div class="panel"><h1 class="title">PACK OPENING</h1><div>Click and drag the pack downward to tear it open. Mouse and touch both work.</div></div><div class="packstage" id="packstage"></div><div class="panel" style="text-align:center"><button class="btn yellow" onclick="buyLoose()">BUY & OPEN PACK — £3</button><button class="btn" onclick="buyBox()">BUY 36-PACK BOX — £75</button></div></section>
+<section id="collection" class="view"><div class="panel"><h1 class="title">BINDER / COLLECTION</h1><div>Cards discovered: <b id="count">0</b> / 12. Variants are separate pulls.</div><div class="actions"><button class="btn" onclick="filter='all';render()">ALL</button><button class="btn" onclick="filter='owned';render()">OWNED</button><button class="btn" onclick="filter='missing';render()">MISSING</button><button class="btn" onclick="filter='variants';render()">VARIANTS</button></div></div><div class="grid" id="cards"></div></section>
+<section id="match" class="view"><div class="panel"><h1 class="title">TILE MATCH</h1><div>Clear the pairs for cash. Three boards per day.</div><div class="match" id="match"></div><div style="text-align:center"><button class="btn yellow" onclick="newMatch()">NEW BOARD</button> <span id="mi"></span></div></div></section>
+<section id="save" class="view"><div class="panel"><h1 class="title">SAVE / LOAD</h1><p>Autosave is on in this browser.</p><button class="btn yellow" onclick="exportSave()">EXPORT SAVE</button> <label class="btn">IMPORT SAVE<input hidden type=file accept=.json onchange="importSave(event)"></label> <button class="btn" onclick="resetGame()">RESET</button></div></section>
+</main></div><div class="modal" id="modal"><div class="modalbox" id="modalbox"></div></div><div class="toast" id="toast"></div>
+<script>
+const CARDS=[{"name": "LUMI", "set": "Pocketkin", "rarity": "common", "icon": "\ud83d\udca7"}, {"name": "SPARKFOX", "set": "Pocketkin", "rarity": "common", "icon": "\ud83d\udd25"}, {"name": "MOSS MEEP", "set": "Pocketkin", "rarity": "uncommon", "icon": "\ud83c\udf3f"}, {"name": "VOLTIK", "set": "Pocketkin", "rarity": "rare", "icon": "\u26a1"}, {"name": "RUMBLETOAD", "set": "Pocketkin", "rarity": "uncommon", "icon": "\ud83d\udc38"}, {"name": "MOONMOLE", "set": "Pocketkin", "rarity": "common", "icon": "\ud83c\udf19"}, {"name": "FULL COURT", "set": "Basketball", "rarity": "rare", "icon": "\ud83c\udfc0"}, {"name": "DIAMOND ACE", "set": "Baseball", "rarity": "rare", "icon": "\u26be"}, {"name": "HOME RUN KING", "set": "Baseball", "rarity": "uncommon", "icon": "\ud83d\udca5"}, {"name": "COURT VISION", "set": "Basketball", "rarity": "uncommon", "icon": "\u2b50"}, {"name": "ARCADE GHOST", "set": "After Hours", "rarity": "holo", "icon": "\ud83d\udc7b"}, {"name": "NEON LYNX", "set": "After Hours", "rarity": "chase", "icon": "\ud83d\udc08"}];
+let S=load(),filter='all',match=null,drag=null;
+function fresh(){return{cash:60,boxes:0,remaining:0,owned:{},variants:{},rep:0}}
+function load(){try{return Object.assign(fresh(),JSON.parse(localStorage.getItem('penny_sleeve_v4')||'{}'))}catch(e){return fresh()}}
+function save(){localStorage.setItem('penny_sleeve_v4',JSON.stringify(S));render()}
+function money(n){return n.toFixed(2)}
+function toast(t){let x=document.getElementById('toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1600)}
+function view(v){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.getElementById(v).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===v));render()}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>view(b.dataset.view));
+function buyLoose(){if(S.cash<3)return toast('Not enough cash.');S.cash-=3;view('packs');openPack()}
+function buyBox(){if(S.cash<75)return toast('A box costs £75.');S.cash-=75;S.boxes++;S.remaining=36;save();toast('SEALED 36-PACK BOX ADDED');view('packs');box()}
+function box(){document.getElementById('packstage').innerHTML='<div class="box" id="box" onclick="crack()"><div class="flap">FACTORY SEALED • 36 PACKS</div><div class="packs">'+Array.from({length:8},()=>'<div class=tiny></div>').join('')+'</div><div class=front><h1>POCKETKIN</h1><div class=big></div><b>SERIES 1 • 36 PACK BOX</b></div></div><div class=actions><button class="btn yellow" onclick="oneFromBox()">PICK UP 1 PACK</button><button class="btn" onclick="allFromBox()">OPEN ALL REMAINING</button></div>'}
+function crack(){document.getElementById('box').classList.toggle('open');toast('Seal broken — packs are loose now')}
+function oneFromBox(){if(!S.remaining){if(!S.boxes)return toast('No sealed box.');S.boxes--;S.remaining=36}S.remaining--;openPack();save()}
+function allFromBox(){if(!S.remaining){if(!S.boxes)return toast('No sealed box.');S.boxes--;S.remaining=36}let p=[];for(let i=0;i<S.remaining;i++)p.push(...pull());S.remaining=0;showPulls(p,'OPENED THE WHOLE BOX');save()}
+function pull(){let p=[];for(let i=0;i<5;i++){let c=CARDS[Math.floor(Math.random()*CARDS.length)],r=Math.random(),v=r<.07?'Holo':r<.13?'Foil':r<.17?'Alternate Art':'Base';p.push({c,v});S.owned[c.name]=(S.owned[c.name]||0)+1;if(v!='Base')S.variants[c.name+'|'+v]=(S.variants[c.name+'|'+v]||0)+1}return p}
+function openPack(){let stage=document.getElementById('packstage');stage.innerHTML='<div class=pack id=pack><div class=brand>POCKETKIN</div><div class=creature>◈</div><div class=tear>TEAR HERE</div></div><div class=instructions>Press and drag the pack downward. On touch, use your finger.</div>';let p=document.getElementById('pack'),start=null,moved=false;p.onpointerdown=e=>{start=e.clientY;p.setPointerCapture(e.pointerId)};p.onpointermove=e=>{if(start!==null&&e.clientY-start>45){p.style.transform='translateY(55px) rotate(8deg)';moved=true}};p.onpointerup=()=>{if(moved){p.classList.add('rip');setTimeout(()=>showPulls(pull(),'PACK OPENED'),350)}else{p.classList.add('shake');setTimeout(()=>p.classList.remove('shake'),500)}}}
+function svgArt(c){
+ const palette={LUMI:["#63d8cf","#f3cb59"],SPARKFOX:["#ef704f","#f6c14c"],"MOSS MEEP":["#73b56b","#cbe36b"],VOLTIK:["#e7c94c","#6bb8e8"],RUMBLETOAD:["#4d9b79","#8bd1a4"],MOONMOLE:["#7770b8","#c9c4ff"],"FULL COURT":["#e86b3e","#f6b64b"],"DIAMOND ACE":["#d64b47","#f3d5ca"],"HOME RUN KING":["#4d79b8","#f3c45b"],"COURT VISION":["#638fd1","#d9ecff"],"ARCADE GHOST":["#8e74cf","#73e7e1"],"NEON LYNX":["#e35fb0","#ffcf5c"]};
+ let q=palette[c.name]||["#67cfc0","#f5cf55"], body="";
+ if(c.name==="SPARKFOX"||c.name==="NEON LYNX") body='<path d="M38 132L27 42l47 28q31-29 62 0l47-28-13 90q-18 31-66 30-48 1-66-30Z" fill="'+q[0]+'" stroke="#17283a" stroke-width="7"/><circle cx="79" cy="91" r="7" fill="#17283a"/><circle cx="132" cy="91" r="7" fill="#17283a"/><path d="M91 112q14 11 28 0" fill="none" stroke="#17283a" stroke-width="5"/>';
+ else if(c.name==="FULL COURT"||c.name==="COURT VISION") body='<circle cx="105" cy="88" r="61" fill="'+q[0]+'" stroke="#17283a" stroke-width="7"/><path d="M45 88h120M105 27v122M63 41q42 47 84 94M147 41q-42 47-84 94" fill="none" stroke="#17283a" stroke-width="7"/><path d="M69 153h72" stroke="'+q[1]+'" stroke-width="12"/>';
+ else if(c.name==="DIAMOND ACE"||c.name==="HOME RUN KING") body='<circle cx="105" cy="88" r="58" fill="'+q[0]+'" stroke="#17283a" stroke-width="7"/><path d="M48 88h114M105 30v116" stroke="#17283a" stroke-width="6"/><path d="M82 73l23-25 23 25-23 35Z" fill="'+q[1]+'" stroke="#17283a" stroke-width="5"/>';
+ else body='<path d="M44 128Q26 65 58 49q17-9 47 10 30-19 47-10 32 16 14 79-22 33-61 32-39 1-61-32Z" fill="'+q[0]+'" stroke="#17283a" stroke-width="7"/><circle cx="79" cy="86" r="8" fill="#17283a"/><circle cx="131" cy="86" r="8" fill="#17283a"/><path d="M88 110q17 14 34 0" fill="none" stroke="#17283a" stroke-width="5"/><path d="M68 51l-9-25M142 51l9-25" stroke="#17283a" stroke-width="7"/>';
+ return '<svg viewBox="0 0 210 175" xmlns="http://www.w3.org/2000/svg"><rect width="210" height="175" fill="#b9ddd7"/><circle cx="30" cy="28" r="18" fill="#f6d978"/><path d="M0 148Q55 113 105 147T210 145V175H0Z" fill="#7eaa69"/>'+body+'<text x="105" y="166" text-anchor="middle" font-family="Arial Black" font-size="10" fill="#183043">'+c.name+'</text></svg>';
+}
+function card(c,v){let cls=v.toLowerCase().replaceAll(' ','');return '<div class="card '+cls+'"><div style="display:flex;justify-content:space-between;font-size:10px;font-weight:bold"><span>'+c.name+'</span><span>'+c.rarity+'</span></div><div class="art">'+svgArt(c)+'</div><h3>'+c.name+'</h3><div class="meta">'+c.set+' • SERIES 1</div><span class="badge">'+v+'</span></div>'}
+function showPulls(p,t){document.getElementById('modalbox').innerHTML='<h1 class=title>'+t+'</h1><div class=pulls>'+p.map(x=>card(x.c,x.v)).join('')+'</div><div style="text-align:center;margin-top:15px"><button class="btn yellow" onclick="closeModal()">PUT THEM IN THE BINDER</button></div>';document.getElementById('modal').classList.add('show')}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')closeModal()}
+function render(){document.getElementById('cash').textContent=money(S.cash);document.getElementById('count').textContent=Object.keys(S.owned).length;document.getElementById('shelves').innerHTML=CARDS.slice(0,8).map(c=>'<div class=rack><div class=mini>'+svgArt(c)+'</div><small>'+c.name+'</small></div>').join('');let a=CARDS;if(filter==='owned')a=a.filter(c=>S.owned[c.name]);if(filter==='missing')a=a.filter(c=>!S.owned[c.name]);if(filter==='variants')a=a.filter(c=>Object.keys(S.variants).some(k=>k.startsWith(c.name+'|')));document.getElementById('cards').innerHTML=a.map(c=>card(c,'Base')+(S.variants[c.name+'|Holo']?'<span class=badge>HOLO OWNED</span>':'')).join('');document.getElementById('mi').textContent='£'+money(S.cash)}
+function customer(){let n=['MICK','LAURA','DARREN','SOPHIE'][Math.floor(Math.random()*4)],v=[5,7,10,14][Math.floor(Math.random()*4)];S.cash+=v;S.rep++;save();toast(n+' BOUGHT A CARD FOR £'+v)}
+function newMatch(){let a=['◆','●','▲','★','■','♥'];a=[...a,...a].sort(()=>Math.random()-.5);match={a,o:[],done:[]};drawMatch()}
+function drawMatch(){document.getElementById('match').innerHTML=match.a.map((x,i)=>'<button class="tile '+(match.o.includes(i)||match.done.includes(i)?'open':'')+'" onclick="flip('+i+')">'+(match.o.includes(i)||match.done.includes(i)?x:'?')+'</button>').join('')}
+function flip(i){if(match.o.length>1||match.done.includes(i)||match.o.includes(i))return;match.o.push(i);drawMatch();if(match.o.length===2){let[a,b]=match.o;if(match.a[a]===match.a[b]){match.done.push(a,b);match.o=[];S.cash+=5;save();drawMatch();if(match.done.length===12){S.cash+=15;save();toast('BOARD CLEARED +£15')}}else setTimeout(()=>{match.o=[];drawMatch()},550)}}
+function exportSave(){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download='penny-sleeve-save.json';a.click()}
+function importSave(e){let r=new FileReader();r.onload=()=>{try{S=Object.assign(fresh(),JSON.parse(r.result));save();toast('SAVE IMPORTED')}catch(x){toast('INVALID SAVE')}};r.readAsText(e.target.files[0])}
+function resetGame(){if(confirm('Reset the shop?')){S=fresh();save()}}
+box();newMatch();render();
+</script></body></html>
